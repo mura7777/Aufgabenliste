@@ -1,11 +1,18 @@
+// Eingabefelder
 const itemInput = document.getElementById("itemInput");
 const amountInput = document.getElementById("amountInput");
 const dateInput = document.getElementById("dateInput");
+
+// Button
 const addBtn = document.getElementById("addBtn");
+
+// Tabelle
 const shoppingTable = document.getElementById("shoppingTable").querySelector("tbody");
 
+// Hinzufügen-Button aktivieren
 addBtn.addEventListener("click", addItem);
 
+// Funktion: Eintrag hinzufügen
 function addItem() {
   const item = itemInput.value.trim();
   const amount = amountInput.value.trim();
@@ -31,10 +38,11 @@ function addItem() {
   dateInput.value = "";
 }
 
-const dateInput = document.getElementById("dateInput");
+// Filter nach Datum
+const filterDate = document.getElementById("filterDate");
 
-dateInput.addEventListener("change", () => {
-  const selected = dateInput.value;
+filterDate.addEventListener("change", () => {
+  const selected = filterDate.value;
   const rows = document.querySelectorAll("#shoppingTable tbody tr");
 
   rows.forEach(row => {
