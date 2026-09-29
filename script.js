@@ -1,7 +1,7 @@
 // Eingabefelder
 const itemInput = document.getElementById("itemInput");
 const amountInput = document.getElementById("amountInput");
-const dateInput = document.getElementById("dateInput");
+
 
 // Button
 const addBtn = document.getElementById("addBtn");
