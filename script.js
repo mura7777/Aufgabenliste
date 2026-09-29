@@ -24,3 +24,14 @@ function addTask() {
   taskList.appendChild(li);
   taskInput.value = "";
 }
+const filterDate = document.getElementById("filterDate");
+
+filterDate.addEventListener("change", () => {
+  const selected = filterDate.value;
+  const rows = document.querySelectorAll("#shoppingTable tbody tr");
+
+  rows.forEach(row => {
+    const rowDate = row.children[2].textContent;
+    row.style.display = rowDate === selected ? "" : "none";
+  });
+});
