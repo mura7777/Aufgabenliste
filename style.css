@@ -86,3 +86,18 @@ td:last-child {
   cursor: pointer;
   font-size: 18px;
 }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.menu {
+  background: #eee;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.hidden {
+  display: none;
+}
