@@ -31,10 +31,10 @@ function addItem() {
   dateInput.value = "";
 }
 
-const filterDate = document.getElementById("filterDate");
+const dateInput = document.getElementById("dateInput");
 
-filterDate.addEventListener("change", () => {
-  const selected = filterDate.value;
+dateInput.addEventListener("change", () => {
+  const selected = dateInput.value;
   const rows = document.querySelectorAll("#shoppingTable tbody tr");
 
   rows.forEach(row => {
