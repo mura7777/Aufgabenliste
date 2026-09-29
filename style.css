@@ -1,39 +1,52 @@
+/* Grundlayout */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   background-color: #f5f7fa;
+  margin: 0;
+  padding: 40px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 40px;
-  margin: 0;
 }
 
+/* Container */
 .container {
   background-color: white;
-  padding: 30px;
+  padding: 25px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  width: 600px;
+  width: 650px;
 }
 
-h1 {
-  text-align: center;
-  color: #333;
+/* Titel + Datum nebeneinander */
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
+.title-row input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Eingabefelder */
 .input-area {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-input {
+.input-area input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  flex: 1;
 }
 
-button {
+/* Hinzufügen-Button */
+#addBtn {
   background-color: #0078D7;
   color: white;
   border: none;
@@ -42,10 +55,11 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+#addBtn:hover {
   background-color: #005fa3;
 }
 
+/* Tabelle */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -56,26 +70,19 @@ th, td {
   border-bottom: 1px solid #ddd;
 }
 
+th {
+  background-color: #f0f0f0;
+  text-align: left;
+}
+
 td:last-child {
   text-align: center;
 }
 
+/* Löschen-Button */
 .deleteBtn {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 18px;
-  }
-.title-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
 }
-
-.title-row input[type="date"] {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
