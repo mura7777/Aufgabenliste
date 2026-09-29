@@ -34,16 +34,10 @@ function addItem() {
   amountInput.value = "";
 }
 
-// Filter nach Einkaufsdatum
+// Einkaufsdatum oben (Filter)
 const filterDate = document.getElementById("filterDate");
 
 filterDate.addEventListener("change", () => {
-  const selected = filterDate.value;
-  const rows = document.querySelectorAll("#shoppingTable tbody tr");
-
-  rows.forEach(row => {
-    // Du kannst später hier Datum-Logik einbauen,
-    // aktuell filtert es nichts, weil Items kein Datum haben.
-    row.style.display = "";
-  });
+  // aktuell keine Filterlogik, weil Items kein Datum haben
+  // später können wir hier gruppieren oder sortieren
 });
