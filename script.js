@@ -16,9 +16,9 @@ addBtn.addEventListener("click", addItem);
 function addItem() {
   const item = itemInput.value.trim();
   const amount = amountInput.value.trim();
-  const date = dateInput.value;
+ 
 
-  if (item === "" || amount === "" || date === "") return;
+  if (item === "" || amount === "") return;
 
   const row = document.createElement("tr");
 
