@@ -1,29 +1,36 @@
-const taskInput = document.getElementById("taskInput");
+const itemInput = document.getElementById("itemInput");
+const amountInput = document.getElementById("amountInput");
+const dateInput = document.getElementById("dateInput");
 const addBtn = document.getElementById("addBtn");
-const taskList = document.getElementById("taskList");
+const shoppingTable = document.getElementById("shoppingTable").querySelector("tbody");
 
-addBtn.addEventListener("click", addTask);
+addBtn.addEventListener("click", addItem);
 
-function addTask() {
-  const taskText = taskInput.value.trim();
-  if (taskText === "") return;
+function addItem() {
+  const item = itemInput.value.trim();
+  const amount = amountInput.value.trim();
+  const date = dateInput.value;
 
-  const li = document.createElement("li");
-  li.textContent = taskText;
+  if (item === "" || amount === "" || date === "") return;
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "❌";
-  deleteBtn.style.background = "none";
-  deleteBtn.style.border = "none";
-  deleteBtn.style.cursor = "pointer";
+  const row = document.createElement("tr");
 
-  deleteBtn.addEventListener("click", () => li.remove());
-  li.addEventListener("click", () => li.classList.toggle("completed"));
+  row.innerHTML = `
+    <td>${item}</td>
+    <td>${amount}</td>
+    <td>${date}</td>
+    <td><button class="deleteBtn">❌</button></td>
+  `;
 
-  li.appendChild(deleteBtn);
-  taskList.appendChild(li);
-  taskInput.value = "";
+  row.querySelector(".deleteBtn").addEventListener("click", () => row.remove());
+
+  shoppingTable.appendChild(row);
+
+  itemInput.value = "";
+  amountInput.value = "";
+  dateInput.value = "";
 }
+
 const filterDate = document.getElementById("filterDate");
 
 filterDate.addEventListener("change", () => {
