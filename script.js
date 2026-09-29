@@ -1,12 +1,10 @@
 // Eingabefelder
 const itemInput = document.getElementById("itemInput");
 const amountInput = document.getElementById("amountInput");
+const unitInput = document.getElementById("unitInput");
 
 // Button
 const addBtn = document.getElementById("addBtn");
-document.getElementById("menuBtn").addEventListener("click", () => {
-document.getElementById("menu").classList.toggle("hidden");
-});
 
 // Tabelle
 const shoppingTable = document.getElementById("shoppingTable").querySelector("tbody");
@@ -14,16 +12,16 @@ const shoppingTable = document.getElementById("shoppingTable").querySelector("tb
 // Lokale Datenbank (LocalStorage)
 let items = JSON.parse(localStorage.getItem("items") || "[]");
 
-// Beim Laden der Seite alles anzeigen
+// Seite laden → Tabelle anzeigen
 renderTable();
 
-// Hinzufügen-Button aktivieren
+// Hinzufügen
 addBtn.addEventListener("click", addItem);
 
-// Funktion: Eintrag hinzufügen
 function addItem() {
   const item = itemInput.value.trim();
   const amount = amountInput.value.trim();
+  const unit = unitInput.value;
 
   if (item === "" || amount === "") return;
 
@@ -31,6 +29,7 @@ function addItem() {
     id: crypto.randomUUID(),
     item,
     amount,
+    unit,
     createdAt: Date.now(),
     deletedAt: null,
     status: "offen"
@@ -44,7 +43,7 @@ function addItem() {
   amountInput.value = "";
 }
 
-// Funktion: Tabelle neu rendern
+// Tabelle anzeigen
 function renderTable() {
   shoppingTable.innerHTML = "";
 
@@ -55,7 +54,7 @@ function renderTable() {
 
       row.innerHTML = `
         <td>${i.item}</td>
-        <td>${i.amount}</td>
+        <td>${i.amount} ${i.unit}</td>
         <td><button class="deleteBtn">❌</button></td>
       `;
 
@@ -65,16 +64,16 @@ function renderTable() {
     });
 }
 
-// Funktion: Artikel löschen
+// Löschen = gekauft
 function deleteItem(id) {
   const item = items.find(i => i.id === id);
-  item.status = "gelöscht";
+  item.status = "gekauft";
   item.deletedAt = Date.now();
   save();
   renderTable();
 }
 
-// Speichern in LocalStorage
+// Speichern
 function save() {
   localStorage.setItem("items", JSON.stringify(items));
 }
