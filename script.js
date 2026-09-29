@@ -8,6 +8,12 @@ const addBtn = document.getElementById("addBtn");
 // Tabelle
 const shoppingTable = document.getElementById("shoppingTable").querySelector("tbody");
 
+// Lokale Datenbank (LocalStorage)
+let items = JSON.parse(localStorage.getItem("items") || "[]");
+
+// Beim Laden der Seite alles anzeigen
+renderTable();
+
 // Hinzufügen-Button aktivieren
 addBtn.addEventListener("click", addItem);
 
@@ -18,26 +24,54 @@ function addItem() {
 
   if (item === "" || amount === "") return;
 
-  const row = document.createElement("tr");
+  const newItem = {
+    id: crypto.randomUUID(),
+    item,
+    amount,
+    createdAt: Date.now(),
+    deletedAt: null,
+    status: "offen"
+  };
 
-  row.innerHTML = `
-    <td>${item}</td>
-    <td>${amount}</td>
-    <td><button class="deleteBtn">❌</button></td>
-  `;
-
-  row.querySelector(".deleteBtn").addEventListener("click", () => row.remove());
-
-  shoppingTable.appendChild(row);
+  items.push(newItem);
+  save();
+  renderTable();
 
   itemInput.value = "";
   amountInput.value = "";
 }
 
-// Einkaufsdatum oben (Filter)
-const filterDate = document.getElementById("filterDate");
+// Funktion: Tabelle neu rendern
+function renderTable() {
+  shoppingTable.innerHTML = "";
 
-filterDate.addEventListener("change", () => {
-  // aktuell keine Filterlogik, weil Items kein Datum haben
-  // später können wir hier gruppieren oder sortieren
-});
+  items
+    .filter(i => i.status === "offen")
+    .forEach(i => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${i.item}</td>
+        <td>${i.amount}</td>
+        <td><button class="deleteBtn">❌</button></td>
+      `;
+
+      row.querySelector(".deleteBtn").addEventListener("click", () => deleteItem(i.id));
+
+      shoppingTable.appendChild(row);
+    });
+}
+
+// Funktion: Artikel löschen
+function deleteItem(id) {
+  const item = items.find(i => i.id === id);
+  item.status = "gelöscht";
+  item.deletedAt = Date.now();
+  save();
+  renderTable();
+}
+
+// Speichern in LocalStorage
+function save() {
+  localStorage.setItem("items", JSON.stringify(items));
+}
