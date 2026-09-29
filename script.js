@@ -4,6 +4,9 @@ const amountInput = document.getElementById("amountInput");
 
 // Button
 const addBtn = document.getElementById("addBtn");
+document.getElementById("menuBtn").addEventListener("click", () => {
+document.getElementById("menu").classList.toggle("hidden");
+});
 
 // Tabelle
 const shoppingTable = document.getElementById("shoppingTable").querySelector("tbody");
