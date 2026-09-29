@@ -2,7 +2,6 @@
 const itemInput = document.getElementById("itemInput");
 const amountInput = document.getElementById("amountInput");
 
-
 // Button
 const addBtn = document.getElementById("addBtn");
 
@@ -16,7 +15,6 @@ addBtn.addEventListener("click", addItem);
 function addItem() {
   const item = itemInput.value.trim();
   const amount = amountInput.value.trim();
- 
 
   if (item === "" || amount === "") return;
 
@@ -25,7 +23,6 @@ function addItem() {
   row.innerHTML = `
     <td>${item}</td>
     <td>${amount}</td>
-    <td>${date}</td>
     <td><button class="deleteBtn">❌</button></td>
   `;
 
@@ -35,10 +32,9 @@ function addItem() {
 
   itemInput.value = "";
   amountInput.value = "";
-  dateInput.value = "";
 }
 
-// Filter nach Datum
+// Filter nach Einkaufsdatum
 const filterDate = document.getElementById("filterDate");
 
 filterDate.addEventListener("change", () => {
@@ -46,7 +42,8 @@ filterDate.addEventListener("change", () => {
   const rows = document.querySelectorAll("#shoppingTable tbody tr");
 
   rows.forEach(row => {
-    const rowDate = row.children[2].textContent;
-    row.style.display = rowDate === selected ? "" : "none";
+    // Du kannst später hier Datum-Logik einbauen,
+    // aktuell filtert es nichts, weil Items kein Datum haben.
+    row.style.display = "";
   });
 });
