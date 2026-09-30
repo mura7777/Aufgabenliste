@@ -162,3 +162,24 @@ perMonth[month] = (perMonth[month] || 0) + 1;
 document.getElementById("navHome").addEventListener("click", () => {
   hideAllPanels();
 });
+function hideAllPanels() {
+  document.getElementById("archivePanel").classList.add("hidden");
+  document.getElementById("analysePanel").classList.add("hidden");
+}
+
+// Menü-Klicks
+document.getElementById("navHome").addEventListener("click", () => {
+  hideAllPanels();
+});
+
+document.getElementById("navArchive").addEventListener("click", () => {
+  hideAllPanels();
+  document.getElementById("archivePanel").classList.remove("hidden");
+  renderArchive();
+});
+
+document.getElementById("navAnalyse").addEventListener("click", () => {
+  hideAllPanels();
+  document.getElementById("analysePanel").classList.remove("hidden");
+  renderAnalyse();
+});
