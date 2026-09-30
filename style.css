@@ -1,113 +1,125 @@
-/* Grundlayout */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background-color: #f5f7fa;
+  background: #f2f5f9;
   margin: 0;
-  padding: 40px;
-  display: flex;
-  justify-content: center;
+  padding: 0;
 }
 
-/* Container */
-.container {
-  background-color: white;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  width: 650px;
-}
-
-/* Titel + Datum nebeneinander */
-.title-row {
+/* NAVBAR */
+.navbar {
+  background: #0078D7;
+  color: white;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  font-size: 20px;
 }
 
-.title-row input[type="date"] {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.menu-icon {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
 }
 
-/* Eingabefelder */
+/* BURGER MENU */
+.menu {
+  background: white;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.menu a {
+  display: block;
+  padding: 10px 0;
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: #0078D7;
+}
+
+.hidden {
+  display: none;
+}
+
+/* CONTAINER */
+.container {
+  width: 90%;
+  max-width: 700px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* INPUT AREA */
 .input-area {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.input-area input {
-  padding: 10px;
+.input-area input,
+.input-area select {
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   flex: 1;
+  font-size: 16px;
 }
 
-/* Hinzufügen-Button */
-#addBtn {
-  background-color: #0078D7;
+.add-button {
+  background: #28a745;
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  padding: 12px 15px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 20px;
 }
 
-#addBtn:hover {
-  background-color: #005fa3;
+.add-button:hover {
+  background: #218838;
 }
 
-/* Tabelle */
+/* TABLE */
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 10px;
 }
 
 th, td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
 }
 
 th {
-  background-color: #f0f0f0;
+  background: #f8f8f8;
   text-align: left;
 }
 
-td:last-child {
-  text-align: center;
-}
-
-/* Löschen-Button */
 .deleteBtn {
   background: none;
   border: none;
+  font-size: 20px;
   cursor: pointer;
-  font-size: 18px;
-}
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
 }
 
-.menu {
-  background: #eee;
-  padding: 10px;
-  border-radius: 8px;
-}
+/* KI BUBBLE */
 .ai-bubble {
-  margin-top: 20px;
+  margin-top: 25px;
   background: #e8f0fe;
   padding: 15px;
-  border-radius: 10px;
-  font-size: 14px;
+  border-radius: 12px;
+  font-size: 15px;
   color: #333;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-
-.hidden {
-  display: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  line-height: 1.5;
 }
