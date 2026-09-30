@@ -100,3 +100,65 @@ function updateAIBubble() {
 document.getElementById("menuBtn").addEventListener("click", () => {
   document.getElementById("menu").classList.toggle("hidden");
 });
+
+function renderArchive() {
+  const archiveTable = document.getElementById("archiveTable").querySelector("tbody");
+  archiveTable.innerHTML = "";
+
+  items
+    .filter(i => i.status === "gekauft")
+    .forEach(i => {
+      const row = document.createElement("tr");
+
+      const date = new Date(i.deletedAt).toLocaleDateString("de-DE");
+
+      row.innerHTML = `
+        <td>${i.item}</td>
+        <td>${i.amount} ${i.unit}</td>
+        <td>${date}</td>
+      `;
+
+      archiveTable.appendChild(row);
+    });
+}
+function renderAnalyse() {
+  const analyse = document.getElementById("analyseContent");
+
+  const total = items.length;
+  const bought = items.filter(i => i.status === "gekauft").length;
+  const open = items.filter(i => i.status === "offen").length;
+
+  const perMonth = {};
+  items.forEach(i => {
+    const month = new Date(i.createdAt).toLocaleString("de-DE", { month: "long", year: "numeric" });
+    perMonth[month] = (perMonth[month] || 0) + 1;
+  });
+
+  let monthStats = "";
+  for (const m in perMonth) {
+    monthStats += `<li>${m}: ${perMonth[m]} Artikel</li>`;
+  }
+
+  analyse.innerHTML = `
+    <p><strong>Gesamt:</strong> ${total} Artikel</p>
+    <p><strong>Offen:</strong> ${open}</p>
+    <p><strong>Gekauft:</strong> ${bought}</p>
+
+    <h3>📅 Artikel pro Monat</h3>
+    <ul>${monthStats}</ul>
+  `;
+}
+/*Menü‑Steuerung*/
+
+document.getElementById("navAnalyse").addEventListener("click", () => {
+  hideAllPanels();
+  document.getElementById("analysePanel").classList.remove("hidden");
+  renderAnalyse();
+});
+/*Panels sauber ein‑/ausblenden*/
+const month = new Date(i.createdAt).toLocaleString("de-DE", { month: "long", year: "numeric" });
+perMonth[month] = (perMonth[month] || 0) + 1;
+
+document.getElementById("navHome").addEventListener("click", () => {
+  hideAllPanels();
+});
