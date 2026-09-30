@@ -9,11 +9,12 @@ const addBtn = document.getElementById("addBtn");
 // Tabelle
 const shoppingTable = document.getElementById("shoppingTable").querySelector("tbody");
 
-// Lokale Datenbank (LocalStorage)
+// Lokale Datenbank
 let items = JSON.parse(localStorage.getItem("items") || "[]");
 
-// Seite laden → Tabelle anzeigen
+// Seite laden
 renderTable();
+updateAIBubble();
 
 // Hinzufügen
 addBtn.addEventListener("click", addItem);
@@ -37,9 +38,8 @@ function addItem() {
 
   items.push(newItem);
   save();
-  updateAIBubble();
-
   renderTable();
+  updateAIBubble();
 
   itemInput.value = "";
   amountInput.value = "";
@@ -72,15 +72,16 @@ function deleteItem(id) {
   item.status = "gekauft";
   item.deletedAt = Date.now();
   save();
-  updateAIBubble();
-
   renderTable();
+  updateAIBubble();
 }
 
 // Speichern
 function save() {
   localStorage.setItem("items", JSON.stringify(items));
 }
+
+// KI-Bubble
 function updateAIBubble() {
   const bubble = document.getElementById("aiBubble");
 
@@ -89,14 +90,13 @@ function updateAIBubble() {
   const open = items.filter(i => i.status === "offen").length;
 
   bubble.textContent =
-    `Ich sehe, du hast insgesamt ${total} Artikel verwaltet. ` +
-    `${open} sind noch offen und ${bought} wurden bereits gekauft. ` +
-    `Ich kann dir später eine Monatsanalyse erstellen.`;
+    `👋 Hey! Ich habe deine Liste analysiert.  
+    Insgesamt verwaltest du ${total} Artikel.  
+    ${open} sind noch offen, ${bought} wurden bereits gekauft.  
+    Ich kann dir später eine Monatsanalyse erstellen!`;
 }
 
-updateAIBubble();
-
+// Burger-Menü
 document.getElementById("menuBtn").addEventListener("click", () => {
   document.getElementById("menu").classList.toggle("hidden");
 });
-
