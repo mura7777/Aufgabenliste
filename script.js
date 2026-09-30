@@ -95,3 +95,8 @@ function updateAIBubble() {
 }
 
 updateAIBubble();
+
+document.getElementById("menuBtn").addEventListener("click", () => {
+  document.getElementById("menu").classList.toggle("hidden");
+});
+
