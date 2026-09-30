@@ -37,6 +37,8 @@ function addItem() {
 
   items.push(newItem);
   save();
+  updateAIBubble();
+
   renderTable();
 
   itemInput.value = "";
@@ -70,6 +72,8 @@ function deleteItem(id) {
   item.status = "gekauft";
   item.deletedAt = Date.now();
   save();
+  updateAIBubble();
+
   renderTable();
 }
 
