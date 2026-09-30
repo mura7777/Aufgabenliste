@@ -77,3 +77,17 @@ function deleteItem(id) {
 function save() {
   localStorage.setItem("items", JSON.stringify(items));
 }
+function updateAIBubble() {
+  const bubble = document.getElementById("aiBubble");
+
+  const total = items.length;
+  const bought = items.filter(i => i.status === "gekauft").length;
+  const open = items.filter(i => i.status === "offen").length;
+
+  bubble.textContent =
+    `Ich sehe, du hast insgesamt ${total} Artikel verwaltet. ` +
+    `${open} sind noch offen und ${bought} wurden bereits gekauft. ` +
+    `Ich kann dir später eine Monatsanalyse erstellen.`;
+}
+
+updateAIBubble();
